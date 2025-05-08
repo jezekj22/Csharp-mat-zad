@@ -1,0 +1,27 @@
+## Build results
+bin/
+obj/
+
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Mono Auto Generated Files
+mono_crash.*
+
+## VS Code settings
+.vscode/
+.vs/
+## ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+## Others
+*.db
+*.sqlite
+
+## Secrets
+*.env
+appsettings.Development.json
