@@ -70,8 +70,9 @@ namespace NotesAppAspNet.Controllers
 
         public IActionResult Logout()
         {
-            HttpContext.Session.Clear();
-            return RedirectToAction("Login");
+            HttpContext.Session.Remove("UserId");
+            return RedirectToAction("Login", "Account");
         }
+
     }
 }

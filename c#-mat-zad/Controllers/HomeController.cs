@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using c__mat_zad.Attributes;
 using c__mat_zad.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace c__mat_zad.Controllers
         {
             return View();
         }
-
+        
         public IActionResult Privacy()
         {
             return View();
