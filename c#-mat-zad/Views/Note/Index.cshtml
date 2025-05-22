@@ -1,0 +1,49 @@
+﻿@model List<c__mat_zad.Models.Note>
+
+@{
+    ViewData["Title"] = "Moje poznámky";
+}
+
+<h2>Moje poznámky</h2>
+
+<a class="btn btn-primary mb-3" asp-action="Create">+ Nová poznámka</a>
+<a class="btn btn-secondary mb-3" asp-action="Index" asp-route-showImportantOnly="false">Všechny</a>
+<a class="btn btn-warning mb-3" asp-action="Index" asp-route-showImportantOnly="true">Jen důležité</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nadpis</th>
+            <th>Text</th>
+            <th>Datum</th>
+            <th>Důležitá</th>
+            <th>Akce</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var note in Model)
+        {
+            <tr>
+                <td>@note.Title</td>
+                <td>@note.Content</td>
+                <td>@note.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>
+                    @if (note.Important)
+                    {
+                        <span class="text-danger">✔️</span>
+                    }
+                </td>
+                <td>
+                    <form asp-action="ToggleImportant" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="@note.Id" />
+                        <button class="btn btn-sm btn-warning">Toggle 🎯</button>
+                    </form>
+                    <form asp-action="Delete" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="@note.Id" />
+                        <button class="btn btn-sm btn-danger">Smazat 🗑️</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

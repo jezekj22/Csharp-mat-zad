@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace NotesAppAspNet.Models
+namespace c__mat_zad.Models
 {
     public class User
     {

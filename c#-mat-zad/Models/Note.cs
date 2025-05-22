@@ -1,24 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NotesAppAspNet.Models
+namespace c__mat_zad.Models
 {
     public class Note
     {
         public int Id { get; set; }
 
         [Required]
-        public string Title { get; set; }
+        public string Title { get; set; } = "";
 
-        public string Content { get; set; }
-
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        [Required]
+        public string Content { get; set; } = "";
 
         public bool Important { get; set; }
 
-        [ForeignKey("User")]
-        public int UserId { get; set; }
+        public DateTime CreatedAt { get; set; }
 
-        public User User { get; set; }
+        public int UserId { get; set; }
     }
 }

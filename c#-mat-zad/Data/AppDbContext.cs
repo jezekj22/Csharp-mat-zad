@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NotesAppAspNet.Models;
+using c__mat_zad.Models;
 
 namespace NotesAppAspNet.Data
 {

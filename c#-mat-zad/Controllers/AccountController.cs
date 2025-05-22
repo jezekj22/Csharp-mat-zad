@@ -3,7 +3,7 @@ using NotesAppAspNet.Data;
 using NotesAppAspNet.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using c__mat_zad.Models;
 namespace NotesAppAspNet.Controllers
 {
     public class AccountController : Controller
@@ -65,7 +65,7 @@ namespace NotesAppAspNet.Controllers
             }
 
             HttpContext.Session.SetInt32("UserId", user.Id);
-            return RedirectToAction("Index", "Notes");
+            return RedirectToAction("Index", "Note");
         }
 
         public IActionResult Logout()

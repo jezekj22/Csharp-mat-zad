@@ -2,6 +2,7 @@ using NotesAppAspNet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using NotesAppAspNet.Models;
+using c__mat_zad.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
