@@ -73,6 +73,34 @@ namespace NotesAppAspNet.Controllers
             HttpContext.Session.Remove("UserId");
             return RedirectToAction("Login", "Account");
         }
+        [HttpGet]
+        public IActionResult DeleteAccount()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAccount(string password)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login");
+
+            var user = await _context.Users.Include(u => u.Notes).FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null) return RedirectToAction("Login");
+
+            var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password);
+            if (result == PasswordVerificationResult.Failed)
+            {
+                return View("DeleteAccount", "Heslo není správné.");
+            }
+
+            _context.Notes.RemoveRange(user.Notes);
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+
+            HttpContext.Session.Clear(); // odhlásit uživatele
+            return RedirectToAction("Register", "Account");
+        }
 
     }
 }
