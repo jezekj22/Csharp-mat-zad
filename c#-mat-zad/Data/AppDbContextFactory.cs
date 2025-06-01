@@ -8,7 +8,7 @@ namespace NotesAppAspNet.Data
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlite("Data Source=notes.db");
+            optionsBuilder.UseNpgsql("Host=db.bsmsajmzrpdstssrvggk.supabase.co;Database=postgres;Username=postgres;Password=opravdusilneheslo;SSL Mode=Require;Trust Server Certificate=true");
 
             return new AppDbContext(optionsBuilder.Options);
         }
