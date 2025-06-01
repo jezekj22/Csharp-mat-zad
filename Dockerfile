@@ -1,14 +1,17 @@
-FROM mcr.microsoft.comdotnetaspnet6.0 AS base
-WORKDIR app
-EXPOSE 80
+# Build stage
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /app
 
-FROM mcr.microsoft.comdotnetsdk6.0 AS build
-WORKDIR src
-COPY . .
-RUN dotnet restore
-RUN dotnet publish -c Release -o apppublish
+# Zkopíruj soubory
+COPY . ./
 
-FROM base AS final
-WORKDIR app
-COPY --from=build apppublish .
-ENTRYPOINT [dotnet, c#-mat-zad.dll]
+# Publish projektu
+RUN dotnet publish -c Release -o out
+
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/out .
+
+# Spusť aplikaci
+ENTRYPOINT ["dotnet", "c#-mat-zad.dll"]
